@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASUS Store | Checkout</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0b0f17;
+color:white;
+padding:30px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+background:#111827;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(0,191,255,.2);
+}
+
+h1{
+text-align:center;
+color:#00bfff;
+margin-bottom:25px;
+}
+
+label{
+display:block;
+margin-top:15px;
+margin-bottom:5px;
+font-weight:bold;
+}
+
+input,textarea,select{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#1f2937;
+color:white;
+}
+
+textarea{
+resize:none;
+height:90px;
+}
+
+.total{
+margin-top:20px;
+padding:15px;
+background:#0d1117;
+border-radius:10px;
+font-size:22px;
+color:#00ff99;
+text-align:center;
+}
+
+button{
+width:100%;
+margin-top:25px;
+padding:14px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:10px;
+background:linear-gradient(90deg,#00bfff,#0077ff);
+color:white;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.02);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Checkout</h1>
+
+<label>Full Name</label>
+<input type="text" placeholder="Enter your name">
+
+<label>Email</label>
+<input type="email" placeholder="Enter your email">
+
+<label>Phone Number</label>
+<input type="tel" placeholder="Enter your phone">
+
+<label>Address</label>
+<textarea placeholder="Enter delivery address"></textarea>
+
+<label>Payment Method</label>
+
+<select>
+<option>UPI</option>
+<option>Credit Card</option>
+<option>Debit Card</option>
+<option>Cash On Delivery</option>
+</select>
+
+<div class="total" id="totalPrice">
+Total : ₹0
+</div>
+
+<button onclick="placeOrder()">
+Place Order
+</button>
+
+</div>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let total = 0;
+
+cart.forEach(item=>{
+total += item.price * item.qty;
+});
+
+document.getElementById("totalPrice").innerHTML =
+"Total : ₹" + total.toLocaleString();
+
+function placeOrder(){
+
+if(cart.length==0){
+
+alert("Your cart is empty!");
+
+return;
+
+}
+
+localStorage.removeItem("cart");
+
+window.location.href="success.html";
+
+}
+
+</script>
+
+</body>
+</html>

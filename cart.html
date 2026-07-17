@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ASUS Store - Cart</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0b0f17;
+color:white;
+padding:20px;
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+color:#00bfff;
+}
+
+.card{
+background:#111827;
+border-radius:12px;
+padding:15px;
+margin-bottom:15px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+box-shadow:0 0 10px rgba(0,191,255,.15);
+}
+
+.left{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.left img{
+width:100px;
+height:75px;
+object-fit:cover;
+border-radius:8px;
+}
+
+.info h3{
+margin-bottom:8px;
+}
+
+.info p{
+margin:4px 0;
+}
+
+.actions{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.actions button{
+padding:8px 12px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.plus{
+background:#00bfff;
+color:white;
+}
+
+.minus{
+background:#ff9800;
+color:white;
+}
+
+.remove{
+background:red;
+color:white;
+}
+
+.bottom{
+margin-top:25px;
+text-align:center;
+}
+
+#total{
+margin:20px 0;
+color:#00ff99;
+}
+
+.bottom button{
+padding:12px 20px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin:5px;
+font-weight:bold;
+}
+
+.clear{
+background:red;
+color:white;
+}
+
+.shop{
+background:#00bfff;
+color:white;
+}
+
+.empty{
+text-align:center;
+font-size:20px;
+margin-top:50px;
+color:#888;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🛒 Your Cart</h1>
+
+<div id="cart"></div>
+
+<div class="bottom">
+
+<h2 id="total"></h2>
+
+<button class="clear" onclick="clearCart()">
+Clear Cart
+</button>
+
+<button class="shop" onclick="window.location.href='purchase.html'">
+Continue Shopping
+</button>
+
+</div>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function loadCart(){
+
+let box = document.getElementById("cart");
+let total = 0;
+
+box.innerHTML="";
+
+if(cart.length===0){
+
+box.innerHTML='<div class="empty">🛒 Cart is Empty</div>';
+document.getElementById("total").innerHTML="";
+return;
+
+}
+
+cart.forEach((item,index)=>{
+
+total += item.price * item.qty;
+
+box.innerHTML += `
+
+<div class="card">
+
+<div class="left">
+
+<img src="${item.img}">
+
+<div class="info">
+
+<h3>${item.name}</h3>
+
+<p>Price : ₹${item.price}</p>
+
+<p>Quantity : ${item.qty}</p>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="plus" onclick="increaseQty(${index})">+</button>
+
+<button class="minus" onclick="decreaseQty(${index})">-</button>
+
+<button class="remove" onclick="removeItem(${index})">
+Remove
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("total").innerHTML =
+"Total : ₹"+total.toLocaleString();
+
+}
+
+function increaseQty(index){
+
+cart[index].qty++;
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+loadCart();
+
+}
+
+function decreaseQty(index){
+
+if(cart[index].qty>1){
+
+cart[index].qty--;
+
+}else{
+
+cart.splice(index,1);
+
+}
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+loadCart();
+
+}
+
+function removeItem(index){
+
+cart.splice(index,1);
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+loadCart();
+
+}
+
+function clearCart(){
+
+localStorage.removeItem("cart");
+
+cart=[];
+
+loadCart();
+
+}
+
+loadCart();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+body{
+background:#0b0f17;
+color:white;
+font-family:Arial;
+}
+
+.game-card{
+background:#131a25;
+padding:15px;
+border-radius:15px;
+margin-bottom:15px;
+display:flex;
+gap:15px;
+align-items:center;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.game-card img{
+width:120px;
+height:80px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.status{
+color:#00ff99;
+font-weight:bold;
+}

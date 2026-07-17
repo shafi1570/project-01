@@ -1,0 +1,15 @@
+.payment-box{
+    max-width:500px;
+    margin:100px auto;
+    background:#131a25;
+    padding:40px;
+    border-radius:20px;
+    }
+    
+    .upi-box{
+    background:#0f1720;
+    padding:20px;
+    border-radius:15px;
+    margin:20px 0;
+    text-align:center;
+    }

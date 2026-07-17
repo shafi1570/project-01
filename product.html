@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ASUS STORE - PRODUCTS</title>
+
+<script src="product.js"></script>
+
+<style>
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+
+color:white;
+
+/* 🔥 PREMIUM ASUS DARK BG */
+background:
+radial-gradient(circle at top left, #0b1a2f 0%, transparent 50%),
+radial-gradient(circle at bottom right, #1a0b2f 0%, transparent 50%),
+linear-gradient(180deg, #05070d 0%, #0b0f1a 50%, #070a12 100%);
+
+overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+background:#0d111a;
+padding:15px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+nav h1{
+color:#00bfff;
+font-size:24px;
+}
+
+/* GRID */
+.product-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:20px;
+padding:25px;
+}
+
+/* CARD */
+.product-card{
+
+position:relative;
+
+background:rgba(17,24,39,0.75);
+backdrop-filter:blur(10px);
+
+border-radius:18px;
+overflow:hidden;
+
+border:1px solid rgba(255,255,255,0.08);
+
+transition:0.3s;
+
+box-shadow:0 0 20px rgba(0,191,255,0.06);
+}
+
+.product-card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 30px rgba(0,191,255,0.25);
+border-color:rgba(0,191,255,0.4);
+}
+
+/* IMAGE */
+.product-card img{
+width:100%;
+height:170px;
+object-fit:cover;
+transition:0.3s;
+}
+
+.product-card:hover img{
+transform:scale(1.05);
+}
+
+/* CONTENT */
+.content{
+padding:15px;
+}
+
+.name{
+font-size:18px;
+font-weight:bold;
+margin-bottom:6px;
+}
+
+.price{
+color:#00ff99;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+/* BUTTON */
+button{
+width:100%;
+padding:10px;
+border:none;
+
+background:linear-gradient(90deg,#00bfff,#0077ff);
+
+color:white;
+font-weight:bold;
+
+border-radius:10px;
+cursor:pointer;
+
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.03);
+filter:brightness(1.2);
+}
+
+/* TAG */
+.tag{
+position:absolute;
+top:10px;
+left:10px;
+
+background:#00bfff;
+color:black;
+
+padding:5px 10px;
+font-size:12px;
+
+border-radius:20px;
+font-weight:bold;
+}
+
+
+ /* TOP NEWS */
+    
+ .top-news{
+    
+    background:
+    linear-gradient(
+    90deg,
+    #0a7fa7,
+    #7caadf,
+    #254a55
+    );
+    
+    overflow:hidden;
+    white-space:nowrap;
+    padding:12px 0;
+    font-weight:bold;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    
+    }
+    
+    .news-track{
+    
+    display:inline-block;
+    padding-left:100%;
+    animation:news 20s linear infinite;
+    
+    }
+    
+    .news-track span{
+    
+    margin-right:80px;
+    font-size:15px;
+    letter-spacing:1px;
+    
+    }
+    
+    @keyframes news{
+    
+    0%{
+    transform:translateX(0);
+    }
+    
+    100%{
+    transform:translateX(-100%);
+    }
+    
+    }
+    
+
+</style>
+
+</head>
+
+<body>
+
+
+    <!-- NEWS -->
+
+<div class="top-news">
+
+    <div class="news-track">
+    
+    <span>🔥 ASUS RTX 5090 Launch Event Coming Soon</span>
+    
+    <span> LOW-END LAPTOPS FOR CREATER CAMING SOON</span>
+    
+    <span>🎮 REPUBLIC OF GAMERS TOURNEMENT NEXT MONTH</span>
+    
+    <span>💻 New ROG GAMING LAPTOP INTEL 14TH GEN Available</span>
+    
+    <span>🚀 ASUS Vibe Coding Workshop Free Registration</span>
+    
+    <span>🔥 Esports Festival Starting Next Month</span>
+    
+    </div>
+    
+    </div>
+
+<nav>
+<h1>ASUS STORE</h1>
+</nav><br><br>
+
+
+<!-- <div class="search-section">
+    <input type="text" id="searchInput" placeholder="🔍 Search ASUS Products..." onkeyup="searchProducts()">
+</div><br><br> -->
+
+
+<button onclick="toggleFilter()">☰ Filter</button>
+
+<div class="filter-buttons" id="filterBox" style="display:none;">
+
+    <button onclick="filterProducts('all')">All</button>
+    <button onclick="filterProducts('ROG')">ROG</button>
+    <button onclick="filterProducts('TUF')">TUF</button>
+    <button onclick="filterProducts('CREATOR')">CREATOR</button>
+    <button onclick="filterProducts('VIVOBOOK')">VIVOBOOK</button>
+    <button onclick="filterProducts('CHROMEBOOK')">CHROMEBOOK</button>
+    <button onclick="filterProducts('EXPERTBOOK')">EXPERTBOOK</button>
+
+</div>
+
+<div class="product-grid">
+
+<!-- 1 -->
+<div class="product-card" data-category="ROG">
+<div class="tag">ROG</div>
+<img src="images/rog-strix-g16-main.jpg">
+<div class="content">
+<div class="name">ROG STRIX G16</div>
+<div class="price">₹1,49,999</div>
+<button onclick="view('ROG Strix G16',149999,'images/rog-strix-g16-main.jpg')">View</button>
+</div>
+</div>
+
+
+<!-- 2 -->
+<div class="product-card" data-category="TUF">
+<div class="tag">TUF</div>
+<img src="images/asus-tuf-f15-second-main.png">
+<div class="content">
+<div class="name">ASUS TUF F15</div>
+<div class="price">₹89,999</div>
+<button onclick="view('ASUS TUF F15',89999,'images/asus-tuf-f15-main.webp')">View</button>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="product-card" data-category="ROG">
+<div class="tag">GAMING LAPTOP</div>
+<img src="images/rog-strix-scar-main.jpg">
+<div class="content">
+<div class="name">ASUS ROG STRIX SCAR 18</div>
+<div class="price">₹4,42,990</div>
+<button onclick="view('ASUS ROG STRIX SCAR 18',94999,'images/rog-strix-scar-main.jpg')">View</button>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="product-card" data-category="MOTHERBOARD">
+<div class="tag">MOTHERBOARD</div>
+<img src="images/rog-motherboard-main.webp">
+<div class="content">
+<div class="name">ASUS ROG CROSSHAIR X870E HERO</div>
+<div class="price">₹73,099</div>
+<button onclick="view('ASUS ROG CROSSHAIR X870E HERO',73099,'images/rog-motherboard-main.webp')">View</button>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="product-card" data-category="ROG">
+<div class="tag">ROG</div>
+<img src="images/rog-flow-main.webp">
+<div class="content">
+<div class="name">ASUS ROG FLOW X13</div>
+<div class="price">₹1,41,500</div>
+<button onclick="view('ASUS ROG FLOW X13',141500,'images/rog')">View</button>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="product-card" data-category="CHROMEBOOK">
+<div class="tag">CHROMEBOOK</div>
+<img src="images/chromebook-cm1405-main.jpg">
+<div class="content">
+<div class="name">ASUS CHROMEBOOK CM1405</div>
+<div class="price">₹30,000</div>
+<button onclick="view('ASUS CHROMEBOOK CM1405',30000,'images/chromebook-cm1405-main')">View</button>
+</div>
+</div>
+
+<!-- 7 -->
+
+<div class="product-card" data-category="TUF">
+<div class="tag">TUF</div>
+<img src="images/tuf-a17-ai.webp">
+<div class="content">
+<div class="name">ASUS TUF A17</div>
+<div class="price">₹49,999</div>
+<button onclick="view('ASUS TUF A17',49999,'images/tuf-a17-ai')">View</button>
+</div>
+</div>
+
+<!-- 8 -->
+
+<div class="product-card" data-category="CREATOR">
+<div class="tag">CREATOR</div>
+<img src="images/asus-zenbook-14-main.jpg">
+<div class="content">
+<div class="name">ASUS ZENBOOK 14 OLED</div>
+<div class="price">₹1,49,999</div>
+<button onclick="view('ASUS ZENBOOK 14 OLED',149999,'images/asus-zenbook-14-main.jpg')">View</button>
+</div>
+</div>
+
+<!-- 9 -->
+
+<div class="product-card" data-category="VIVOBOOK">
+<div class="tag">VIVOBOOK</div>
+<img src="images/asus-vivobook-v15-main.webp">
+<div class="content">
+<div class="name">ASUS VIVOBOOK 15</div>
+<div class="price">₹42,900</div>
+<button onclick="view('ASUS VIVOBOOK 15',42900,'images/vivobook-V15.jpg')">View</button>
+</div>
+</div>
+
+<!-- 10 -->
+
+<div class="product-card" data-category="VIVOBOOK">
+<div class="tag">VIVOBOOK</div>
+<img src="images/asus-vivobook-s14-main.png">
+<div class="content">
+<div class="name">ASUS VIVOBOOK S14</div>
+<div class="price">₹64,900</div>
+<button onclick="view('ASUS VIVOBOOK S14',64900,'images/asus-vivobook-s14-main.png')">View</button>
+</div>
+</div>
+
+
+<!-- 11 -->
+
+<div class="product-card" data-category="VIVOBOOK">
+<div class="tag">VIVOBOOK</div>
+<img src="images/asus-vivobook-v15-main.webp">
+<div class="content">
+<div class="name">ASUS VIVOBOOK V15</div>
+<div class="price">₹1,49,999</div>
+<button onclick="view('ASUS VIVOBOOK V15',149999,'images/asus-vivobook-15-main.webp')">View</button>
+</div>
+</div>
+
+<!-- 12 -->
+
+<div class="product-card" data-category="CHROMEBOOK">
+    <div class="tag">CHROMBOOK</div>
+    <img src="images/asus-chromebook-cx14-main.jpg">
+    <div class="content">
+    <div class="name">ASUS CHROMEBOOK CX14</div>
+    <div class="price">₹14,490</div>
+    <button onclick="view('ASUS CHROMEBOOK CX14',14490,'images/asus-chromebook-cx14-main.jpg')">View</button>
+    </div>
+  
+</div>
+
+<!-- 13 -->
+
+<div class="product-card" data-category="EXPERTBOOK">
+    <div class="tag">EXPERTBOOK</div>
+    <img src="images/asus-expertbook-p3-main.jpg">
+    <div class="content">
+    <div class="name">ASUS EXPERTBOOK P3</div>
+    <div class="price">₹79990</div>
+    <button onclick="view('ASUS EXPERTBOOK P3',79990,'images/asus-expertbook-p3-main.jpg')">View</button>
+    </div>
+</div>
+
+<!-- 14 -->
+
+
+<div class="product-card" data-category="ZEPHYRUS">
+    <div class="tag">ZEPHYRUS</div>
+    <img src="images/rog-zephyrus-g14-main.png">
+    <div class="content">
+    <div class="name">ROG ZEPHYRUS G14</div>
+    <div class="price">₹1,99,990</div>
+    <button onclick="view('ROG ZEPHYRUS G14',138999,'images/asus-zephyrus-g14-main.jpg')">View</button>
+    </div>
+</div>
+
+<!-- 15 -->
+
+<div class="product-card" data-category="TUF">
+    <div class="tag">TUF</div>
+    <img src="images/asus-tuf-f16-main.jpeg">
+    <div class="content">
+    <div class="name">ASUS TUF GAMING F16</div>
+    <div class="price">₹1,04,999</div>
+    <button onclick="view('ASUS TUF GAMING F16',104999,'images/asus-tuf-f16-main.jpeg')">View</button>
+    </div>
+
+</div>
+
+<!-- 16 -->
+
+<div class="product-card" data-category="TUF">
+    <div class="tag">TUF</div>
+    <img src="images/asus-tuf-f15-main.webp">
+    <div class="content">
+    <div class="name">ASUS TUF A15</div>
+    <div class="price">₹80000</div>
+    <button onclick="view('ASUS TUF A15',80000,'images/rog-controller.jpg')">View</button>
+    </div>
+</div>
+
+<!-- 17 -->
+
+<div class="product-card" data-category="ROG">
+    <div class="tag">ROG</div>
+    <img src="images/rog-flowz13-main.png">
+    <div class="content">
+    <div class="name">ROG FLOW Z13</div>
+    <div class="price">₹2,00,999</div>
+    <button onclick="view('ROG FLOW Z13',200999,'images/asus-rog-flow-z13-main.jpg')">View</button>
+    </div>
+</div>
+
+<!-- 18 -->
+
+<div class="product-card" data-category="ROG">
+    <div class="tag">ROG</div>
+    <img src="images/rog-strix-scar-g16-main.webp">
+    <div class="content">
+    <div class="name">ROG STRIX SCAR 16</div>
+    <div class="price">₹2,79,999</div>
+    <button onclick="view('ROG Strix SCAR 16',279999,'images/strix-scar-16.webp')">View</button>
+    </div>
+
+</div>
+
+<!-- 19 -->
+
+<div class="product-card" data-category="ROG">
+    <div class="tag">ROG</div>
+    <img src="images/asus-gaming-v16-main.png">
+    <div class="content">
+    <div class="name">ASUS GAMING V16</div>
+    <div class="price">₹90,999</div>
+    <button onclick="view('ASUS GAMING V16',90999,'images/asus-gaming-v16-main.png')">View</button>
+    </div>
+</div>
+
+<!--20 -->
+
+<div class="product-card" data-category="ZENBOOK">
+    <div class="tag">ZENBOOK</div>
+    <img src="images/rog-ally.jpg">
+    <div class="content">
+    <div class="name">ASUS ZENBOOK 14 OLED</div>
+    <div class="price">₹1,23,000</div>
+    <button onclick="view('ASUS ZENBOOK 14',123000,'images/rog-ally.jpg')">View</button>
+    </div>
+</div>
+
+
+<!-- 21 -->
+<!-- <div class="product-card">
+
+</div> -->
+
+</div>
+
+<script>
+
+function view(name,price,img){
+
+localStorage.setItem("product",JSON.stringify({
+name,price,img
+}));
+
+window.location.href="product-details.html";
+
+}
+
+</script>
+
+</body>
+</html>

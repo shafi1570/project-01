@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Product Details</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial;
+background:#0b0f19;
+color:white;
+}
+
+/* NAV */
+
+nav{
+background:#111827;
+padding:18px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid rgba(255,255,255,0.08);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#00bfff;
+}
+
+.back-btn{
+color:#00bfff;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* MAIN */
+
+.main-container{
+display:grid;
+grid-template-columns:1.1fr 1fr;
+gap:40px;
+padding:40px;
+}
+
+/* LEFT SIDE */
+
+.left-section{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+/* MAIN IMAGE */
+
+.main-image{
+background:#111827;
+padding:15px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.main-image img{
+width:100%;
+height:500px;
+object-fit:cover;
+border-radius:12px;
+transition:0.3s;
+}
+
+/* THUMBNAILS */
+
+.gallery{
+display:flex;
+gap:15px;
+overflow-x:auto;
+padding-bottom:10px;
+}
+
+.gallery img{
+width:120px;
+height:90px;
+object-fit:cover;
+border-radius:10px;
+cursor:pointer;
+border:2px solid transparent;
+transition:0.3s;
+background:#111827;
+padding:4px;
+}
+
+.gallery img:hover{
+border-color:#00bfff;
+transform:scale(1.05);
+}
+
+/* RIGHT SECTION */
+
+.right-section{
+background:#111827;
+padding:30px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,0.08);
+height:max-content;
+}
+
+/* PRODUCT NAME */
+
+.product-name{
+font-size:38px;
+margin-bottom:10px;
+}
+
+/* PRICE */
+
+.price{
+font-size:34px;
+font-weight:bold;
+color:#00ff99;
+margin:15px 0;
+}
+
+/* BADGES */
+
+.badges{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+flex-wrap:wrap;
+}
+
+.badge{
+background:#1f2937;
+padding:8px 15px;
+border-radius:50px;
+font-size:14px;
+color:#00bfff;
+border:1px solid rgba(0,191,255,0.3);
+}
+
+/* SPECS */
+
+.spec-title{
+font-size:24px;
+margin:25px 0 15px;
+color:#00bfff;
+}
+
+.spec{
+padding:14px;
+border-bottom:1px solid rgba(255,255,255,0.06);
+font-size:15px;
+color:#d1d5db;
+}
+
+/* BUTTONS */
+
+.btn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+margin-top:15px;
+transition:0.3s;
+}
+
+.cart-btn{
+background:#00bfff;
+color:white;
+}
+
+.cart-btn:hover{
+background:#0099cc;
+transform:translateY(-2px);
+}
+
+.buy-btn{
+background:#00ff99;
+color:black;
+}
+
+.buy-btn:hover{
+transform:translateY(-2px);
+}
+
+/* DELIVERY */
+
+.delivery{
+margin-top:25px;
+background:#0b1220;
+padding:18px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,0.05);
+}
+
+.delivery h4{
+margin-bottom:10px;
+color:#00bfff;
+}
+
+.delivery p{
+color:#ccc;
+font-size:14px;
+line-height:1.7;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.main-container{
+grid-template-columns:1fr;
+padding:20px;
+}
+
+.main-image img{
+height:320px;
+}
+
+.product-name{
+font-size:28px;
+}
+
+.price{
+font-size:28px;
+}
+
+.gallery img{
+width:90px;
+height:70px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+
+<nav>
+
+<div class="logo">
+ASUS STORE
+</div>
+
+<a href="product.html" class="back-btn">
+⬅ Back
+</a>
+
+</nav>
+
+<!-- MAIN -->
+
+<div class="main-container">
+
+<!-- LEFT -->
+
+<div class="left-section">
+
+<div class="main-image">
+<img id="mainImg">
+</div>
+
+<div class="gallery" id="gallery"></div>
+
+</div>
+
+<!-- RIGHT -->
+
+<div class="right-section">
+
+<h1 class="product-name" id="name"></h1>
+
+<div class="badges">
+
+<!-- <div class="badge">Official ASUS Product</div>
+
+<div class="badge">Free Delivery</div>
+
+<div class="badge">Gaming Edition</div> -->
+
+</div>
+
+<div class="price" id="price"></div>
+
+<h3 class="spec-title">
+Specifications
+</h3>
+
+<div id="specs"></div>
+
+<button class="btn cart-btn"
+onclick="addToCart()">
+Add To Cart
+</button>
+
+<button class="btn buy-btn">
+Buy Now
+</button>
+
+<div class="delivery">
+
+<h4>Delivery & Warranty</h4>
+
+<!-- <p>
+✔ 1 Year ASUS Warranty<br>
+✔ Free Premium Support<br>
+✔ Fast Delivery Available<br>
+✔ Secure ASUS Packaging
+</p> -->
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* GET PRODUCT */
+
+let p =
+JSON.parse(localStorage.getItem("product"));
+
+/* PRODUCT NAME */
+
+document.getElementById("name").innerText =
+p.name;
+
+/* PRODUCT PRICE */
+
+document.getElementById("price").innerText =
+"₹" + p.price;
+
+/* MAIN IMAGE */
+
+document.getElementById("mainImg").src =
+p.img;
+
+/* MULTIPLE IMAGES */
+
+let imageDB = {
+
+"ROG Strix G16":[
+"images/rog-g16-spacs.webp",
+"images/rog-g16-game.webp",
+"images/rog-g16-fan.webp"
+],
+
+"ASUS TUF F15":[
+"images/tuf-f15-spacs.webp",
+"images/tuf-f15-plugs.webp",
+"images/tuf-f15-keyboard.webp",
+],
+
+"ZENBOOK PRO":[
+"https://rukminim2.flixcart.com/image/1157/1157/xif0q/monitor/q/q/n/-original-imahd62ghh7xbmpm.jpeg?q=90",
+"https://rukminim2.flixcart.com/image/1157/1157/xif0q/monitor/w/c/o/-original-imahd62ght7shf6y.jpeg?q=90",
+"https://rukminim2.flixcart.com/image/1157/1157/xif0q/monitor/z/7/y/-original-imahd62gdswjmtjv.jpeg?q=90"
+],
+
+"ASUS ROG STRIX SCAR 18":[
+"https://rukminim2.flixcart.com/image/1157/1157/xif0q/computer/m/e/x/-original-imahbrwgn8qpvgfz.jpeg?q=90",
+"https://rukminim2.flixcart.com/image/1157/1157/xif0q/computer/j/t/5/-original-imahbrwgnzdgmffz.jpeg?q=90",
+"https://rukminim2.flixcart.com/image/1157/1157/xif0q/computer/g/l/t/-original-imahbrwgngxbrzau.jpeg?q=90",
+"https://rukminim2.flixcart.com/image/1157/1157/xif0q/computer/k/8/t/-original-imahbrwguud5dz5k.jpeg?q=90"
+],
+
+"ASUS ROG CROSSHAIR X870E HERO":[
+"https://rukminim2.flixcart.com/image/1157/1157/xif0q/monitor/w/c/o/-original-imahd62ght7shf6y.jpeg?q=90",
+"https://rukminim2.flixcart.com/image/1157/1157/xif0q/monitor/q/q/n/-original-imahd62ghh7xbmpm.jpeg?q=90",
+"https://rukminim2.flixcart.com/image/1157/1157/xif0q/monitor/z/7/y/-original-imahd62gdswjmtjv.jpeg?q=90"
+],
+
+"ASUS ROG FLOW X13":[
+"images/rog-flow-x13-ports.webp",
+"images/rog-flow-x13-fan.webp",
+"images/rog-flow-x13-display.webp",
+"images/rog-flow-x13-spes.webp",
+],
+
+"ASUS CHROMEBOOK CM1405":[
+"images/chromebook-cm-1405-main.jpeg",
+"images/chromebook-cm-1405-portable.jpg",
+"images/chromebook-cm-1405-battery.jpg",
+"images/chromebook-cm-1405-fun.jpg",
+],
+
+"ASUS TUF A17":[
+"images/tuf-a17-rtx.webp",
+"images/tuf-a17-color.webp",
+"images/tuf-a17-display.webp",
+"images/tuf-a17-ai.webp",
+"images/tuf-a17-fan.webp",
+],
+
+"ASUS ZENBOOK 14 OLED":[
+"images/zenbook-spacs.webp",
+"images/zenbook-glass.webp",
+"images/zenbook-software.webp",
+"images/zenbook-keyboard.webp",
+],
+
+"ASUS VIVOBOOK 15":[
+"images/asus-vivobook-15-2.webp",
+"images/asus-vivobook-15-display.webp",
+"images/asus-vivobook-15-keyboard.webp",
+"images/asus-vivobook-15-specs.webp",
+],
+
+"ASUS CHROMEBOOK CX14":[
+"images/chromebook-cx14-cpu.webp",
+"images/chromebook-cx14-software.webp",
+"images/chromebook-cx14-ports.webp",
+],
+
+"ASUS EXPERTBOOK P3":[
+"images/expertboob-p3-anti-virus.webp",
+"images/expertbook-p3-battery.webp",
+"images/expertbook-p3-ports.webp",
+"images/expertbook-p3-fan.webp",
+],
+
+"ROG ZEPHYRUS G14":[
+"images/zephyrus-g14-color.webp",
+"images/zephyrus-g14-display.webp",
+"images/zephyrus-g14-ports.webp",
+"images/zephyrus-g14-game.webp",
+],
+
+"ROG FLOW Z13":[
+"images/rog-flow-fan.webp",
+"images/rog-flow-cpu.webp",
+"images/rog-flow-software.webp",
+"images/rog-flow-main.webp",
+],
+
+
+"ROG STRIX SCAR 16":[
+"images/rog-scar-fan.webp",
+"images/rog-scar-flair.webp",
+"images/rog-scar-ports.webp",
+"images/rog-scar-spacs.webp",
+],
+
+"ASUS GAMING V16":[
+"images/asus-v16-specs.webp",
+"images/asus-v16-display.webp",
+"images/asus-v16-fan.webp",
+"images/asus-v16-ports.webp",
+],
+
+"ASUS VIVOBOOK S14":[
+"images/vivobook-s14-battery.webp",
+"images/vivobook-s14-spacs.webp",
+"images/vivobook-s14-software.webp",
+"images/vivobook-s14-ports.webp",
+],
+
+"ASUS ROG CROSSHAIR X870E HERO":[
+"images/rog-motherboard-front.webp",
+"images/rog-motherboard-side.webp",
+],
+
+"ASUS TUF A15":[
+"images/asus-tuf-a15-display.webp",
+"images/asus-tuf-a15-feature.webp",
+"images/asus-tuf-a15-ports.webp",
+],
+
+"ASUS TUF GAMING F16":[
+"images/asus-tuf-f16-display.webp",
+"images/asus-tuf-f16-fan.webp",
+"images/asus-tuf-f16-specs.webp",
+"images/asus-tuf-f16-ports.webp",
+],
+
+
+};
+
+/* GALLERY */
+
+let gallery =
+document.getElementById("gallery");
+
+let images =
+imageDB[p.name] || [p.img];
+
+images.forEach(img=>{
+
+gallery.innerHTML += `
+
+<img src="${img}"
+onclick="changeImage('${img}')">
+
+`;
+
+});
+
+/* CHANGE IMAGE */
+
+function changeImage(img){
+
+document.getElementById("mainImg").src =p.img;
+
+}
+
+/* SPECS */
+
+let specsDB = {
+
+"ROG Strix G16":[
+"CPU : Intel Core i9-14900HX",
+"GPU : NVIDIA RTX 4080 12GB",
+"Display : 16-inch QHD 240Hz",
+"RAM : 32GB DDR5",
+"Storage : 1TB Gen4 SSD",
+"Keyboard : RGB Per-Key",
+"OS : Windows 11 Home",
+"Ports : Thunderbolt 4, HDMI, USB-C",
+"IN THE BOX:1 x Laptop, 1 x Power Adaptor, 1 x User Guide, 1 x Warranty Documents",
+"COLOR:Eclipse Gray",
+"SUITABLE FOR:Gaming, Processing & Multitasking, Performance, Everyday Use, Travel & Business, Entertainment"
+],
+
+"ASUS TUF F15":[
+"CPU : AMD Ryzen 7 8845HS",
+"GPU : RTX 4060",
+"Display : 15.6-inch 144Hz",
+"RAM : 16GB DDR5",
+"Storage : 512GB SSD",
+"Keyboard : RGB Gaming Keyboard",
+"OS : Windows 11",
+"Ports : USB-C, HDMI, LAN",
+"IN THE BOX:Laptop, Power Adaptor, User Guide, Warranty Documents",
+"SUITABLE:GAMING",
+"SCREEN TYPE:Full HD, Refresh Rate 144Hz, Viewing Angle 85/85/85/85, Panel Tech Value IPS-level, Brightness 250, Contrast 1000:1, NTSC 45%, SRGB 62.5%, Adobe 47.34%, Anti-glare display",
+"WEB CAMERA:720P HD camera",
+"KEYBOARD:Backlit Chiclet Keyboard 1-Zone RGB",
+"BLUETOOTH:V5.3"
+],
+
+"ASUS ROG STRIX SCAR 18":[
+"PROCCESSOR : Intel Core Ultra 9",
+"GRAPHICS :RTX 5090 ",
+"Display : 4K OLED Touch",
+"RAM : 64GB",
+"Storage : 2TB SSD",
+"Battery : 90Wh",
+"OS : Windows 11 Pro",
+"IN THE BOX : Laptop, Power Adaptor, User Guide, Warranty Documents",
+"SUITABLE FOR : Gaming, Processing & Multitasking, Performance, Everyday Use, Travel & Business, Entertainment",
+"SCREEN RESOLUTION : 2560 x 1600 Pixels",
+"WEB CAMERA : 1080P FHD IR Camera for Windows Hello",
+"SOUND PROPERTIES : AI-Noise Canceling Technology, Dolby Atmos, Hi-Res Certification (For Headphone), Smart Amp Technology",
+"KEYBOARD : Backlit Chiclet Keyboard Per-Key RGB with Copilot Key"
+],
+
+"ROG Phone 8":[
+"Processor : Snapdragon 8 Gen 3",
+"Display : AMOLED 165Hz",
+"RAM : 16GB",
+"Storage : 512GB",
+"Battery : 5500mAh",
+"Cooling : AeroActive Support",
+"OS : Android 15"
+],
+
+"ASUS ROG FLOW X13":[
+"PROCCESSOR: Ryzen 9 Octa Core 6900HS",
+"RAM:16GB",
+"STORAGE:1TB SSD",
+"OPERATING SYSTEM:WINDOWS 11 ",
+"GRAPHICS:NVIDIA GeForce RTX 3050",
+],
+
+"ASUS CHROMEBOOK CM1405":[
+"PROCCESSOR:MediaTek Kompanio 540",
+"RAM:4GB",
+"STORAGE:64GB SSD",
+"PORTS:1x USB 3.2 Gen 1 Type-A, 2x USB 3.2 Gen 1 Type-C support display ",
+"OTHER FEATURES:Front-facing camera 720p HD camera with privacy shutter ",
+"IN THE BOX:Laptop, Power Adaptor, User Guide, Warranty Documents",
+"BALLERY:42 Watt Hours",
+],
+
+"ASUS ROG CROSSHAIR X870E HERO":[
+"INTERGRATED GRAPHICS CARD:NO INTERGRATED",
+"IN THE BOX:1 Motherboard with Accessories, Quick Start Guide",
+"MEMORY CONFIGURATION:192 GB DDR5 Dual Channel DIMM",
+"CAPACITY:192GB",
+"CHIPSET: AMD X870 Chipset DDR5",
+],
+
+"ProArt Laptop":[
+"PROCESSOR:DIAL INTEL CORE I9 12900H",
+"RAM:32GB",
+"STORAGE:1TB",
+"OPERATING SYSTEM:WINDOWS 11 HOME",
+"GRAPHICS CARD:NVIDIA 8GB RTX 3070", 
+"INCH:16 INCH",
+"DISPLAY:OLED",
+"POWER SUPPLY:240W AC ADAPTER"
+],
+
+"Vivobook pro 15":[
+"PROCESSOR:AMD RYZEN 7 OCTA CORE 5800H",
+"RAM:16GB",
+"STORAGE:512GB SSD",
+"OPERATING SYSTEM:WINDOWS 11 HOME",
+"GRAPHICS CARD:RTX 2050",
+"REFRESH RATE:144HZ",
+"POWER SUPPLY:120W AC ADAPTER",
+],
+
+"AUSUS ZENBOOK 14 OLED":[
+"PROCESSOR:INTEL CORE ULTRA 7",
+"RAM:32GB",
+"STORAGE:1TB",
+"PROCESSER VARIANT:255H",
+"GRAOHICS PROCESSER:INTERGRATED GRAPHICS",
+"OPERATING SYSTEM:WINDOWS 11",
+"SCREEN RESOLUTION:2880 x 1800 Pixel",
+"IN THE BOX: Laptop, Power Adaptor, User Guide, Warranty Documents",
+"SERIES: Zenbook 14 OLED (2025) with Touch Screen, Backlit Keyboard, Full Metal Body,",
+"COLOR: FOGGY SILVER",
+"SUITABLE FOR: PROCCESSING & MULTITASKING",
+"KEYBOARD: Backlit Chiclet Keyboard",
+],
+
+"ASUS VIVOBOOK 15":[
+"PROCESSOR:INTEL CORE i5 12TH GEN 1235U",
+"RAM:16GB",
+"STORAGE:512 MVME SSD",
+"RAM TYPE:DDR4",
+"OPERATING SYSTEM:WINDOWS 11",
+"SCREEN RESOLUTION:1920 x 1080 Pixel",
+"SUITABLE FOR: Processing & Multitasking",
+"COLOR: Quiet Blue",
+"IN THE BOX: Laptop, Power Adaptor, User Guide, Warranty Documents",
+"SCREEN TYPE: Full HD, 16:9 aspect ratio, LCD LED Backlit, 60Hz refresh rate, 250nits, 45% NTSC color gamut, Anti-glare display",
+"WEB CAM: 720p HD camera With privacy shutter",
+"KEYBOARD: Backlit Chiclet Keyboard",
+],
+
+"ASUS VIVOBOOK S14":[
+"PROCESSOR:INTEL CORE 5 14TH GEN 210H",
+"RAM:16GB",
+"STORAGE:512GB SSD",
+"OPARETING SYSTEM:WINDOWS 11",
+"SCREEN RESOLUTION:1920 x 1200 Pixel",
+"IN THE BOX: Laptop, Power Adaptor, User Guide, Warranty Documents",
+"COLOR: Matte Gray",
+"SUITABLE FOR: Processing & Multitasking, Performance, Everyday Use, Travel & Business, Entertainment",
+"SCREEN TYPE: FHD+ (1920 x 1080, WUXGA) 16:9 aspect ratio, 300nits, 60Hz refresh rate, LED Backlit, Anti-glare display, 45% NTSC color gamut, 86% Screen-to-body ratio, TÜV Rheinland-certified",
+"WEB CAM: 1080p FHD camera with privacy shutter",
+"KEYBOARD: Backlit Chiclet Keyboard",
+],
+
+"ASUS CHROMEBOOK CX14":[
+"PROCESSOR:INTEL CELERON DUAL CORE N50",
+"RAM:4GB",
+"STORAGE:64GB EMMC STORAGE CAPACITY",
+"RAM TYPE:LPDDR5",
+"OPERATING SYSTEM:CHROME",
+"SCREEN RESOLUTION:1920 x 1080 pixels",
+"IN THE BOX: 1 x Laptop, 1 x Power Adaptor, 1 x User Guide, 1 x Warranty Documents",
+"TYPE: Chromebook Laptop",
+"SUITABLE FOR: Processing & Multitasking, Everyday Use, Travel & Business, Entertainment",
+"SCREEN TYPE: FHD (1920 x 1080) 16:9, Anti-glare display, 300nits, NTSC: 45%, Screen-to-body ratio: 86 %",
+"WEB CAM: 720p HD camera with privacy shutter",
+"KEYBOARD: Chiclet Keyboard",
+],
+
+"ASUS EXPERTBOOK P3":[
+"PROCESSSOR:INTEL CORE i5 13TH GEN 13420H",
+"RAM:16GB",
+"STORAGE:512GB SSD",
+"DDR TYPE:DDR5",
+"GRAPHICS PROCESSOR:Intel Integrated UHD",
+"OPERATING SYSTEM:WINDOWS 11 HOME",
+"SCREEN RESOLUTION:1920 x 1200 Pixel",
+],
+
+"ROG ZEPHYRUS G14":[
+"PROCESSOR:AMD RYZEN 9 OCTA CORE 5900HS",
+"RAM:16GB",
+"STORAGE:1TB SSD",
+"GRAPHICS PROCESSOR:NVIDIA GeForce RTX 3060 6GB GDDR6",
+"OPERATING SYSTEM:WINDOWS 10",
+"SCREEN RESOLUTION:2560 x 1440 Pixel",
+],
+
+
+"ASUS TUF A15":[
+"PROCCESSOR:AMD RYZEN 7 170HS",
+"RAM:16GB",
+"STORAGE:512 SSD",
+"GRAPHICS CARD:RTX 3050 4GB GDDR6",
+"OPERATING SYSTEM:WINDOWS 11",
+"SCREEN RESOLUTION:2560 x 1600 pixels",
+"REFRESH RATE:144 HZ",
+"BRIGHTNESS LEVEL:250 NITS",
+"BATTERY:48 WTR",
+],
+
+"ROG FLOW Z13":[
+"PROCESSOR:AMD RYZEN AI MAX",
+"RAM:64GB",
+"STORAGE:1TB SSD",
+"GRAPHICS PROCESSOR:AMD Radeon AMD Radeon 8060S",
+"OPERATING SYSTEM:WINDOWS 11 HOME",
+"SCREEN RESOLUTION:2560 x 1600 pixels",
+],
+
+"ROG STRIX SCAR 16":[
+"PROCESSOR:INTEL CORE i9 14TH GEN 14900HX",
+"RAM:32GB",
+"STORAGE:2TB SSD",
+"GRAPHICS PROCESSOR:NVIDIA GeForce RTX 4080",
+"OPERATING SYSTEM:WINDOWS 11",
+"SCREEN RESOLUTION:2560 x 1600 Pixel",
+],
+
+"ASUS GAMING V16":[
+"PROCESSOR:INTEL CORE 5 210H",
+"RAM:16GB",
+"STORAGE:512GB SSD",
+"GRAPHICS PROCESSOR:NVIDIA GeForce RTX 4050",
+"OPERATING SYSTEM:WINDOWS 11 HOME",
+"SCREEN RESOLUTION:1920 x 1200 Pixel",
+],
+
+"ASUS ROG ALLY RYZEN Z1":[
+"PROCESSSOR:AMD Ryzen™ Z1 Extreme Processor",
+"OPERATING SYSTEM:WINDOWS 11 HOME",
+"GRAPHICS PROCESSOR:AMD Radeon™ Graphics",
+"SCREEN RESOLUTION:1920 x 1080 PIXELS FHD",
+"REFERSH RATE:120HZ",
+"BRIGHTNESS:500 NITS",
+"STORAGE:512GB SSD",
+"I/P POTRS:1X 3.5 MM AUDIO JACK",
+"1X ROG XG MOBILE INTERFACE AND USB TYPE-C",
+],
+
+"ASUS ZENBOOK 14 OLED":[
+"PROCESSOR:INTEL CORE ULTRA 7 255H",
+"RAM:32GB",
+"STORAGE:1TB SSD",
+"GRAPHICS PROCESSOR:Intel Integrated Arc",
+"OPERATING SYSTEM:WINDOWS 11 HOME",
+"SCREEN RESOLUTION:2880 x 1800 Pixel",
+"REFRESH RATE:120 HZ",
+],
+
+"ASUS TUF A17":[
+"PROCESSOR: INTEL CORE i5 11TH GEN 11400H",
+"RAM: 16GB",
+"STORAGE: 512GB SSD",
+"SCREEN RESOLUTION: 1920 x 1080 Pixels",
+"OPERATING SYSTEM: WINDOWS 11",
+"GRAPHICS PROCESSOR: NVIDIA GeForce RTX 2050 4GB GDDR6",
+"IN THE BOX: Laptop, Power Adaptor, User Guide, Warranty Documents",
+"COLOR: GRAPHITE BLACK",
+"SUITABLE FOR: GAMING",
+"SCREEN TYPE: Full HD, 16:9 Aspect Ratio, 165Hz Refresh Rate, Viewing Angle: 85/85/85/85, IPS Level Panel, 300 Nits Brightness, Contrast Ratio: 1000:1, DCI-P3 %: 100%, Anti-glare Display, Adaptive Sync",
+"KEYBOARD: Backlit Chiclet Keyboard 1-Zone RGB",
+],
+
+"ROG ZEPHYRUS G14":[
+"PROCCESSER:INTEL AMD RYZEN 9 OCTA CORE",
+"RAM:16GB",
+"STORAGE:1TB SSD",
+"SCREEN RESOLUTION:2880 x 1800 Pixel",
+"OPERATING SYSTEM:WINDOWS 11",
+"REFRESH RATE:120 HZ",
+],
+
+"ASUS TUF GAMING F16":[
+"PROCCESSOR:INTEL CORE 5 210H",
+"RAM:16GB",
+"STORAGE:512 SSD",
+"GRAPHICS CARD:RTX 3050A",
+"OPERATING SYSTEM:WINDOWS 11",
+"SCREEEN RESOLUTION:1920 x 1200 pixels",
+"SOUND PROPERTIES:AI NOICE CANCELLATION DOLBY ATOMS",
+"REFRESH RATE:144 HZ",
+"BRIGHTNESS LEVEL:500 NITS",
+"IN THE BOX:LAPTOP,POWER ADAPTER,USER GUIDE,WARRANTY DOCUMENTS",
+],
+
+
+};
+
+/* SHOW SPECS */
+
+let specs =
+specsDB[p.name] || ["Premium ASUS Product"];
+
+specs.forEach(s=>{
+
+document.getElementById("specs").innerHTML += `
+
+<div class="spec">
+${s}
+</div>
+
+`;
+
+});
+
+
+
+/* LOAD PRODUCT */
+
+document.getElementById("name").innerHTML = p.name;
+
+document.getElementById("price").innerHTML =
+"₹" + Number(p.price).toLocaleString();
+
+document.getElementById("image").src = p.img;
+
+
+
+
+/* ADD TO CART */
+
+function addToCart(){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+/* Already in cart */
+
+let existing = cart.find(item => item.name === p.name);
+
+if(existing){
+
+existing.qty++;
+
+}else{
+
+cart.push({
+
+name:p.name,
+price:p.price,
+img:p.img,
+qty:1
+
+});
+
+}
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+alert("✅ Added To Cart");
+
+}
+
+
+/* BUY NOW */
+
+function buyNow(){
+
+localStorage.setItem("purchase",JSON.stringify({
+
+name:p.name,
+price:p.price,
+img:p.img,
+qty:1
+
+}));
+
+window.location.href="purchase.html";
+
+}
+
+
+</script>
+
+</body>
+</html>
